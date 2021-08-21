@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
 import styles from './app.module.scss'
+import InputTodo from './components/InputTodo'
+import IncompleteTodoList from './components/IncompleteTodos'
+import FixedTodoList from './components/FixedTodos'
 
 const App = () => {
   const [todoText, setTodoText] = useState('')
@@ -17,6 +20,7 @@ const App = () => {
     setIncompleteTodos(newTodos);
     setTodoText('');
   }
+
 
   const clickDeleteBtn = (index) => {
     const newTodos = [...incompleteTodos];
@@ -48,43 +52,20 @@ const App = () => {
     <>
       <section className={styles.todo}>
         <h1 className={styles.todo__lv1Title}>TODOリスト</h1>
-        <div className={`${styles.todo__box} ${styles.todo__input}`}>
-          <input
-            className={styles.todo__textArea}
-            value={todoText}
-            type="text"
-            placeholder="TODOを入力"
-            onChange={changeTodoText}
-          />
-          <button className={styles.todo__button} onClick={clickAddBtn}>追加</button>
-        </div>
-        <section className={`${styles.todo__box} ${styles.todo__imcomplete}`}>
-          <h2 className={styles.todo__lv2Title}>未完了のTODO</h2>
-          <ul className={styles.todo__list}>
-            {incompleteTodos.map((todo, index) => {
-              return (
-                <li key={todo} className={styles.todo__listItem}>
-                  <span>{todo}</span>
-                  <button className={styles.todo__button} onClick={() => clickFixBtn(index)}>完了</button>
-                  <button className={styles.todo__button} onClick={() => clickDeleteBtn(index)}>削除</button>
-                </li>
-              )
-            })}
-          </ul>
-        </section>
-        <section className={`${styles.todo__box} ${styles.todo__complete}`}>
-          <h2 className={styles.todo__lv2Title}>完了したTODO</h2>
-          <ul className={styles.todo__list}>
-            {fixedTodos.map((todo, index) => {
-              return (
-                <li key={todo} className={styles.todo__listItem}>
-                  <span>{todo}</span>
-                  <button className={styles.todo__button} onClick={() => clickBackBtn(index)}>戻す</button>
-                </li>
-              )
-            })}
-          </ul>
-        </section>
+        <InputTodo
+          todoText={todoText}
+          onChange={changeTodoText}
+          onClick={clickAddBtn}
+        />
+        <IncompleteTodoList
+          incompleteTodos={incompleteTodos}
+          onClickFixBtn={clickFixBtn}
+          onClickDeleteBtn={clickDeleteBtn}
+        />
+        <FixedTodoList
+          fixedTodos={fixedTodos}
+          onClick={clickBackBtn}
+        />
       </section>
     </>
   )
