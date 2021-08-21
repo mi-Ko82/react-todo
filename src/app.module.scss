@@ -1,0 +1,74 @@
+.todo {
+  &__box {
+    width: 400px;
+    margin: auto;
+    padding: 20px;
+    border-radius: 8px;
+  }
+
+  &__lv1Title {
+    text-align: center;
+    font-size: 2.6rem;
+  }
+
+  &__lv2Title {
+    margin: 0 0 20px;
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  &__input {
+    background-color: #c1ffff;
+  }
+
+  &__textArea {
+    border-radius: 16px;
+    border: none;
+    padding: 6px 16px;
+    outline: none;
+  }
+
+  &__button {
+    border-radius: 16px;
+    border: none;
+    padding: 4px 16px;
+    transition: all .3s;
+    cursor: pointer;
+    margin: 0 2px;
+
+    &:hover {
+      background-color: #ff7fff;
+      color: #fff;
+    }
+
+    &:first-of-type {
+      margin-left: 10px;
+    }
+  }
+
+  &__imcomplete {
+    margin-top: 20px;
+    background-color: #c6ffe2;
+  }
+
+  &__complete {
+    margin-top: 20px;
+    background-color: #ffffe0;
+  }
+
+  &__list {
+    padding: 0;
+    list-style: disc;
+    font-size: 1.6rem;
+  }
+
+  &__listItem {
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+
+    &::before {
+      content: '・';
+    }
+  }
+}
