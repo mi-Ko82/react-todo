@@ -24,6 +24,16 @@ const App = () => {
     setIncompleteTodos(newTodos);
   }
 
+  const clickFixBtn = (index) => {
+    const newFixedTodo = incompleteTodos[index];
+    const newIncompleteTodos = [...incompleteTodos];
+    newIncompleteTodos.splice(index, 1);
+    setIncompleteTodos(newIncompleteTodos);
+
+    const newFixedTodos = [...fixedTodos, newFixedTodo];
+    setFixedTodos(newFixedTodos);
+  }
+
   return (
     <>
       <section className={styles.todo}>
@@ -45,7 +55,7 @@ const App = () => {
               return (
                 <li key={todo} className={styles.todo__listItem}>
                   <span>{todo}</span>
-                  <button className={styles.todo__button}>完了</button>
+                  <button className={styles.todo__button} onClick={() => clickFixBtn(index)}>完了</button>
                   <button className={styles.todo__button} onClick={() => clickDeleteBtn(index)}>削除</button>
                 </li>
               )
