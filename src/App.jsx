@@ -34,6 +34,16 @@ const App = () => {
     setFixedTodos(newFixedTodos);
   }
 
+  const clickBackBtn = (index) => {
+    const newIncompleteTodo = fixedTodos[index];
+    const newFixedTodos = [...fixedTodos];
+    newFixedTodos.splice(index, 1);
+    setFixedTodos(newFixedTodos);
+
+    const newIncompleteTodos = [...incompleteTodos, newIncompleteTodo];
+    setIncompleteTodos(newIncompleteTodos);
+  }
+
   return (
     <>
       <section className={styles.todo}>
@@ -65,11 +75,11 @@ const App = () => {
         <section className={`${styles.todo__box} ${styles.todo__complete}`}>
           <h2 className={styles.todo__lv2Title}>完了したTODO</h2>
           <ul className={styles.todo__list}>
-            {fixedTodos.map(todo => {
+            {fixedTodos.map((todo, index) => {
               return (
                 <li key={todo} className={styles.todo__listItem}>
                   <span>{todo}</span>
-                  <button className={styles.todo__button}>戻す</button>
+                  <button className={styles.todo__button} onClick={() => clickBackBtn(index)}>戻す</button>
                 </li>
               )
             })}
