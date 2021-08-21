@@ -3,8 +3,8 @@ import styles from './app.module.scss'
 
 const App = () => {
   const [todoText, setTodoText] = useState('')
-  const [incompleteTodos, setIncompleteTodos] = useState(['あああ', 'いいいいいい'])
-  const [fixedTodos, setFixedTodos] = useState(['TODOでした'])
+  const [incompleteTodos, setIncompleteTodos] = useState([])
+  const [fixedTodos, setFixedTodos] = useState([])
 
   const changeTodoText = (event) => {
     setTodoText(event.target.value);
