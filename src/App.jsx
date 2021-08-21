@@ -2,16 +2,35 @@ import React, { useState } from 'react'
 import styles from './app.module.scss'
 
 const App = () => {
+  const [todoText, setTodoText] = useState('')
   const [incompleteTodos, setIncompleteTodos] = useState(['あああ', 'いいいいいい'])
   const [fixedTodos, setFixedTodos] = useState(['TODOでした'])
+
+  const changeTodoText = (event) => {
+    setTodoText(event.target.value);
+  }
+
+  const clickAddBtn = () => {
+    if(todoText === '') return;
+
+    const newTodos = [...incompleteTodos, todoText];
+    setIncompleteTodos(newTodos);
+    setTodoText('');
+  }
 
   return (
     <>
       <section className={styles.todo}>
         <h1 className={styles.todo__lv1Title}>TODOリスト</h1>
         <div className={`${styles.todo__box} ${styles.todo__input}`}>
-          <input className={styles.todo__textArea} type="text" placeholder="TODOを入力" />
-          <button className={styles.todo__button}>追加</button>
+          <input
+            className={styles.todo__textArea}
+            value={todoText}
+            type="text"
+            placeholder="TODOを入力"
+            onChange={changeTodoText}
+          />
+          <button className={styles.todo__button} onClick={clickAddBtn}>追加</button>
         </div>
         <section className={`${styles.todo__box} ${styles.todo__imcomplete}`}>
           <h2 className={styles.todo__lv2Title}>未完了のTODO</h2>
