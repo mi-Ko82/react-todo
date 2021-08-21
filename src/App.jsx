@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 import styles from './app.module.scss'
 
 const App = () => {
+  const [incompleteTodos, setIncompleteTodos] = useState(['あああ', 'いいいいいい'])
+  const [fixedTodos, setFixedTodos] = useState(['TODOでした'])
+
   return (
     <>
       <section className={styles.todo}>
@@ -13,25 +16,28 @@ const App = () => {
         <section className={`${styles.todo__box} ${styles.todo__imcomplete}`}>
           <h2 className={styles.todo__lv2Title}>未完了のTODO</h2>
           <ul className={styles.todo__list}>
-            <li className={styles.todo__listItem}>
-              <span>TODOです</span>
-              <button className={styles.todo__button}>完了</button>
-              <button className={styles.todo__button}>削除</button>
-            </li>
-            <li className={styles.todo__listItem}>
-              <span>TODOです</span>
-              <button className={styles.todo__button}>完了</button>
-              <button className={styles.todo__button}>削除</button>
-            </li>
+            {incompleteTodos.map(todo => {
+              return (
+                <li key={todo} className={styles.todo__listItem}>
+                  <span>{todo}</span>
+                  <button className={styles.todo__button}>完了</button>
+                  <button className={styles.todo__button}>削除</button>
+                </li>
+              )
+            })}
           </ul>
         </section>
         <section className={`${styles.todo__box} ${styles.todo__complete}`}>
           <h2 className={styles.todo__lv2Title}>完了したTODO</h2>
           <ul className={styles.todo__list}>
-            <li className={styles.todo__listItem}>
-              <span>TODOでした</span>
-              <button className={styles.todo__button}>戻す</button>
-            </li>
+            {fixedTodos.map(todo => {
+              return (
+                <li key={todo} className={styles.todo__listItem}>
+                  <span>{todo}</span>
+                  <button className={styles.todo__button}>戻す</button>
+                </li>
+              )
+            })}
           </ul>
         </section>
       </section>
