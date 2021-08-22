@@ -21,31 +21,31 @@ const App = () => {
     setTodoText('');
   }
 
+  const deleteTodo = (index, todos, setTodos) => {
+    const newTodos = [...todos];
+    newTodos.splice(index, 1);
+    setTodos(newTodos);
+  }
+
+  const addTodo = (index, todos, setTodos) => {
+    const removeTodos = todos === incompleteTodos ? fixedTodos : incompleteTodos
+    const newTodo = removeTodos[index];
+    const newTodos = [...todos, newTodo];
+    setTodos(newTodos);
+  }
 
   const clickDeleteBtn = (index) => {
-    const newTodos = [...incompleteTodos];
-    newTodos.splice(index, 1);
-    setIncompleteTodos(newTodos);
+    deleteTodo(index, incompleteTodos, setIncompleteTodos);
   }
 
   const clickFixBtn = (index) => {
-    const newFixedTodo = incompleteTodos[index];
-    const newIncompleteTodos = [...incompleteTodos];
-    newIncompleteTodos.splice(index, 1);
-    setIncompleteTodos(newIncompleteTodos);
-
-    const newFixedTodos = [...fixedTodos, newFixedTodo];
-    setFixedTodos(newFixedTodos);
+    addTodo(index, fixedTodos, setFixedTodos);
+    deleteTodo(index, incompleteTodos, setIncompleteTodos);
   }
 
   const clickBackBtn = (index) => {
-    const newIncompleteTodo = fixedTodos[index];
-    const newFixedTodos = [...fixedTodos];
-    newFixedTodos.splice(index, 1);
-    setFixedTodos(newFixedTodos);
-
-    const newIncompleteTodos = [...incompleteTodos, newIncompleteTodo];
-    setIncompleteTodos(newIncompleteTodos);
+    addTodo(index, incompleteTodos, setIncompleteTodos);
+    deleteTodo(index, fixedTodos, setFixedTodos);
   }
 
   return (
