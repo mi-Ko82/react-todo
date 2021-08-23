@@ -1,0 +1,19 @@
+.todo {
+  &__button {
+    border-radius: 16px;
+    border: none;
+    padding: 4px 16px;
+    transition: all .3s;
+    cursor: pointer;
+    margin: 0 2px;
+
+    &:hover {
+      background-color: #ff7fff;
+      color: #fff;
+    }
+
+    &:first-of-type {
+      margin-left: 10px;
+    }
+  }
+}
